@@ -1,0 +1,15 @@
+.env
+.venv/
+node_modules/
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Too large for GitHub (download separately — see README)
+python/models/arcface.onnx
+
+# Local / private runtime data
+python/calendar_token.json
+python/face_data/
