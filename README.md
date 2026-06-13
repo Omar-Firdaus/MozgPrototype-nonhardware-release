@@ -45,5 +45,5 @@ It's an electron app that spawns python services over websockets. Most of teh vi
 
 AI Usage:
 
-I'm pretty confident that well over 70% of this project was human written. My most heavy usage of AI in this project was the UI (Specifically for the HUD's liquid glass which you can probably tell). Also used composer agent for debugging and fixing my billion api errors which may be the reason that on one of the hacaktimes you see a fat block called "browsing". 
+I'm pretty confident that well over 70% of this project was human written, but there was a few parts where I took to using AI. My most heavy usage of AI in this project was the UI (Specifically for the HUD's liquid glass which you can probably tell) + random filler text throughout settings, chat, etc. Also used composer agent for debugging and fixing my billion api errors which may be the reason that on one of the hacaktimes you see a fat block called "browsing"
 
