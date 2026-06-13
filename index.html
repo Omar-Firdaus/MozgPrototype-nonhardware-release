@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mozg</title>
 <style>
-  /* ── Reset ── */
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   html {
@@ -25,7 +24,6 @@
     font-family: -apple-system, 'SF Pro Display', 'Helvetica Neue', sans-serif;
   }
 
-  /* ── Video from Python (single camera) — mirror like a selfie preview ── */
   #feed-wrap {
     position: absolute;
     inset: 0;
@@ -42,7 +40,7 @@
     transform: translateZ(0);
   }
 
-  /* ── Overlay canvas sits on top ── */
+
   #canvas {
     position: absolute;
     inset: 0;
@@ -51,7 +49,6 @@
     pointer-events: none;
   }
 
-  /* ── Face overlay container (DOM elements for glass effects) ── */
   #overlay {
     position: absolute;
     inset: 0;
@@ -59,9 +56,7 @@
     overflow: visible;
   }
 
-  /* ══════════════════════════════════════
-     LIQUID GLASS FACE BOX — hollow center, stroke-only blur
-  ══════════════════════════════════════ */
+
   .face-box {
     --stroke: 12px;
     --r: 16px;
@@ -69,12 +64,11 @@
     border-radius: var(--r);
     background: transparent;
     overflow: visible;
-    /* Position/size updated every frame from JS smoothing — do NOT CSS-transition geometry (causes choppy lag). */
+
     transition: opacity 160ms ease;
     animation: boxAppear 180ms ease-out forwards;
   }
 
-  /* Each edge is its own frosted strip so the middle stays empty */
   .glass-edge {
     position: absolute;
     pointer-events: none;
@@ -158,9 +152,7 @@
     border-bottom-right-radius: var(--r);
   }
 
-  /* ══════════════════════════════════════
-     NAME STACK — pill + dropdown below (anchored to top-right of face box)
-  ══════════════════════════════════════ */
+
   .name-stack {
     position: absolute;
     top: -4px;
@@ -174,9 +166,6 @@
     pointer-events: none;
   }
 
-  /* ══════════════════════════════════════
-     NAME PILL — warm frosted glass, bold white name
-  ══════════════════════════════════════ */
   .name-pill {
     position: relative;
 
@@ -210,7 +199,6 @@
       0 0 20px rgba(255, 230, 190, 0.3);
   }
 
-  /* ── Animations ── */
   @keyframes boxAppear {
     from { opacity: 0; }
     to   { opacity: 1; }
@@ -221,9 +209,6 @@
     to   { opacity: 1; transform: translateX(0) scale(1); }
   }
 
-  /* ══════════════════════════════════════
-     AUTO DROP-DOWN — below name pill, non-interactive, opens by itself
-  ══════════════════════════════════════ */
   .face-dropdown {
     margin-top: 8px;
     width: 100%;
@@ -289,9 +274,6 @@
     background: rgba(255, 255, 255, 0.12);
   }
 
-  /* ══════════════════════════════════════
-     LIVE ASSIST — mic + speech + AI cues (Cluey-style)
-  ══════════════════════════════════════ */
   .assist-panel {
     display: none;
     margin-top: 9px;
@@ -316,8 +298,7 @@
   .assist-panel.is-open {
     display: block;
   }
-
-  /* In-HUD Information — same liquid glass language as Live assist */
+  
   .hud-info-panel {
     display: none;
     margin-top: 9px;
@@ -710,7 +691,7 @@
     word-break: break-word;
   }
 
-  /* ── Consumer app shell (monochrome / hardware UI) ── */
+
   .hidden {
     display: none !important;
   }
