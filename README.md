@@ -10,11 +10,15 @@ Having a heads up hud is awesome. Really wanted to have a pair of glasses with a
 
 Requirments:
 
-macOS or Linux, Node.js 18+, Python 3.9+
+macOS or linux, node.js 18+, python 3.9+
 
 cd smart-glasses
 ./scripts/bootstrap.sh 
 npm start
+
+How it works:
+
+An Electron window plus some Python services on the Mac handle camera, speech, and data. For this version, almost everything runs on the machine locally, except APIs for ai, calendar, search, etc. As this release is a prototype for software that's going to run on the firmware locally, the account flow isn't too developed.
 
 Usage:
 
