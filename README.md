@@ -12,8 +12,7 @@ Requirments:
 
 macOS or linux, node.js 18+, python 3.9+
 
-cd smart-glasses
-./scripts/bootstrap.sh 
+./scripts/bootstrap.sh
 npm start
 
 How it works:
@@ -24,7 +23,9 @@ Usage:
 
 It's not really meant for usage without the hardware, however I did make some changes to the code so you can try it out without the hardware. Here are the steps if you want to try and run it on mac.
 
-- download and launch the dmg from the release page
+- download and launch the dmg from the [release page](https://github.com/Omar-Firdaus/MozgPrototype-nonhardware-release/releases/latest)
+- drag **Mozg** into Applications, then double-click **remove-quarantine.command** in the dmg (macOS blocks unsigned downloads with a fake “damaged” error)
+- or run: `xattr -cr /Applications/Mozg.app`
 - hit launch hud
 - tap assist
 - after you exit you can view the context of specific people on the "people" page

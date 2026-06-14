@@ -1,6 +1,6 @@
 {
   "name": "smart-glasses-hud",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Mozg smart glasses HUD prototype",
   "author": "Omar Firdaus",
   "main": "main.js",
@@ -25,6 +25,9 @@
     },
     "mac": {
       "category": "public.app-category.developer-tools",
+      "hardenedRuntime": true,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist",
       "target": [
         {
           "target": "dmg",
@@ -35,7 +38,21 @@
           "arch": ["arm64"]
         }
       ],
-      "identity": null
+      "identity": "-",
+      "signIgnore": [
+        ".venv"
+      ]
+    },
+    "dmg": {
+      "contents": [
+        { "x": 130, "y": 220, "type": "file" },
+        { "x": 410, "y": 220, "type": "link", "path": "/Applications" },
+        { "x": 130, "y": 360, "type": "file", "path": "build/remove-quarantine.command" }
+      ],
+      "window": {
+        "width": 540,
+        "height": 420
+      }
     },
     "files": [
       "main.js",
@@ -58,7 +75,7 @@
       {
         "from": ".venv",
         "to": ".venv",
-        "filter": ["**/*"]
+        "filter": ["**/*", "!**/__pycache__/**", "!**/*.pyc", "!**/*.pyo"]
       }
     ],
     "asar": true
