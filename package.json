@@ -1,15 +1,66 @@
 {
   "name": "smart-glasses-hud",
   "version": "1.0.0",
+  "description": "Mozg smart glasses HUD prototype",
+  "author": "Omar Firdaus",
   "main": "main.js",
   "scripts": {
     "setup": "bash scripts/bootstrap.sh",
-    "start": "electron ."
+    "start": "electron .",
+    "build:mac": "electron-builder --mac",
+    "build": "bash scripts/build-release.sh"
   },
   "dependencies": {
     "dotenv": "^16.5.0"
   },
   "devDependencies": {
-    "electron": "^30.0.0"
+    "electron": "^30.0.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.mozg.smart-glasses-hud",
+    "productName": "Mozg",
+    "directories": {
+      "output": "dist"
+    },
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["arm64"]
+        },
+        {
+          "target": "zip",
+          "arch": ["arm64"]
+        }
+      ],
+      "identity": null
+    },
+    "files": [
+      "main.js",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "index.html",
+        "to": "."
+      },
+      {
+        "from": "python",
+        "to": "python",
+        "filter": ["**/*", "!**/__pycache__/**", "!**/*.pyc"]
+      },
+      {
+        "from": ".env.example",
+        "to": "."
+      },
+      {
+        "from": ".venv",
+        "to": ".venv",
+        "filter": ["**/*"]
+      }
+    ],
+    "asar": true
   }
 }

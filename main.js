@@ -1,11 +1,29 @@
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
+const fs = require('fs')
 const { spawn } = require('child_process')
 const net = require('net')
 
-require('dotenv').config({ path: path.join(__dirname, '.env') })
-
 const pyProcs = []
+let rootDir = __dirname
+
+function getRootDir() {
+  return app.isPackaged ? process.resourcesPath : __dirname
+}
+
+function loadEnv() {
+  rootDir = getRootDir()
+  const envPath = app.isPackaged
+    ? path.join(app.getPath('userData'), '.env')
+    : path.join(__dirname, '.env')
+
+  if (app.isPackaged && !fs.existsSync(envPath)) {
+    const example = path.join(rootDir, '.env.example')
+    if (fs.existsSync(example)) fs.copyFileSync(example, envPath)
+  }
+
+  require('dotenv').config({ path: envPath })
+}
 
 function portBusy(port) {
   return new Promise((resolve) => {
@@ -21,12 +39,11 @@ function portBusy(port) {
 
 function findPython() {
   const candidates = [
-    path.join(__dirname, '.venv', 'bin', 'python3'),
-    path.join(__dirname, '.venv', 'bin', 'python'),
+    path.join(rootDir, '.venv', 'bin', 'python3'),
+    path.join(rootDir, '.venv', 'bin', 'python'),
     'python3',
     'python',
   ]
-  const fs = require('fs')
   for (const p of candidates) {
     try {
       if (p.includes('/') && fs.existsSync(p)) return p
@@ -38,8 +55,8 @@ function findPython() {
 
 function startPy(script, label) {
   const python = findPython()
-  const proc = spawn(python, [path.join(__dirname, 'python', script)], {
-    cwd: path.join(__dirname, 'python'),
+  const proc = spawn(python, [path.join(rootDir, 'python', script)], {
+    cwd: path.join(rootDir, 'python'),
     env: { ...process.env },
     stdio: ['ignore', 'pipe', 'pipe'],
   })
@@ -54,6 +71,7 @@ function hasEnv(name) {
 }
 
 app.whenReady().then(() => {
+  loadEnv()
   const calPort = parseInt(process.env.GOOGLE_CALENDAR_PORT || '8768', 10)
   const fcPort = parseInt(process.env.FIRECRAWL_PORT || '8769', 10)
 
@@ -88,7 +106,7 @@ app.whenReady().then(() => {
       contextIsolation: false,
     },
   })
-  win.loadFile('index.html')
+  win.loadFile(path.join(rootDir, 'index.html'))
 })
 
 app.on('before-quit', () => {

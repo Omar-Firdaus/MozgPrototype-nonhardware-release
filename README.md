@@ -24,7 +24,7 @@ Usage:
 
 It's not really meant for usage without the hardware, however I did make some changes to the code so you can try it out without the hardware. Here are the steps if you want to try and run it on mac.
 
-- npm start
+- download and launch the dmg from the release page
 - hit launch hud
 - tap assist
 - after you exit you can view the context of specific people on the "people" page
