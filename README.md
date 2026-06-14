@@ -24,7 +24,7 @@ Usage:
 It's not really meant for usage without the hardware, however I did make some changes to the code so you can try it out without the hardware. Here are the steps if you want to try and run it on mac.
 
 - download and launch the dmg from https://github.com/Omar-Firdaus/MozgPrototype-nonhardware-release/releases/latest
-- drag the app into Applications, then run xattr -cr /Applications/Mozg.app in terminal
+- drag the app into Applications, then run xattr -cr /Applications/Mozg.app in terminal (macOS is weird)
 - hit launch hud
 - tap assist
 - after you exit you can view the context of specific people on the "people" page
